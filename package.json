@@ -1,0 +1,28 @@
+{
+  "name": "1cak",
+  "version": "0.0.1",
+  "description": "1cak scraper",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gimenz/1cak.git"
+  },
+  "keywords": [
+    "1cak-api",
+    "wancak-scraper"
+  ],
+  "author": "Gimenz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Gimenz/1cak/issues"
+  },
+  "homepage": "https://github.com/Gimenz/1cak#readme",
+  "dependencies": {
+    "axios": "^0.26.1",
+    "got": "^11.8.3",
+    "jsdom": "^19.0.0"
+  }
+}

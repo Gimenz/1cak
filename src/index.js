@@ -7,7 +7,8 @@ class Wancak {
     #cookie;
     /**
      * 
-     * @param {string} cookie example: 'sess_user_id=1080150; sess_str=8654ddb1d004cad1c023eeaee3894c7asas3;'
+     * @param {string} cookie
+     * @example new Wancak('sess_user_id=1080150; sess_str=8654ddb1d004cad1c023eeaee3894c7asas3;')
      */
     constructor(cookie) {
         this.#cookie = cookie
@@ -31,7 +32,7 @@ class Wancak {
     static getCookie = async (username, password) => {
         try {
             return 'TO DO // getCookie()'
-            // let ndasmu = {
+            // let nndasmumu = {
             //     'Cache-Control': 'max-age=0',
             //     'Connection': 'keep-alive',
             //     'Upgrade-Insecure-Requests': 1,
@@ -56,7 +57,7 @@ class Wancak {
             // const res = await axios.post('https://1cak.com/auth&redirect=',
             //     `${user}=${username}&password=${encodeURIComponent(password)}&Submit=Login`,
             //     {
-            //         headers: ndas
+            //         headers: nndasmu
             //     }
             // )
         } catch (error) {
@@ -194,6 +195,68 @@ class Wancak {
                 })
             }
             return data
+        } catch (error) {
+            throw error
+        }
+    }
+
+    /**
+     * get comments list
+     * @param {string|number} postId post id
+     */
+    async getComments(postId) {
+        try {
+            const { data } = await axios.get('https://cdn16.1cak.com/1cak_comment.php?act=view_comments&post_id=' + postId)
+            let dom = new JSDOM(data).window.document
+            //let comment = [...dom.getElementById('comment_1cak_' + id).querySelector('div > div').querySelectorAll('div[style="margin-bottom:10px;overflow:hidden"]')]
+            //style="margin:5px"
+            let comment = [...dom.querySelector('div[style="margin:5px"]').querySelectorAll('div[style="margin-bottom:10px;overflow:hidden"]')]
+            let ndasmu = []
+            for (let x of comment) {
+                ndasmu.push({
+                    author: {
+                        user: x.querySelector('span > a > b').textContent
+                    },
+                    parent_comment_id: x.querySelector('span').getAttribute('id').match(/\d+/)[0],
+                    hasMedia: /img src/g.test(x.innerHTML),
+                    media: /img src/g.test(x.innerHTML) ? x.querySelector('img').getAttribute('src') : null,
+                    date: x.querySelector('abbr').getAttribute('title'),
+                    text: /<br>(.*?)[<|\n]/g.exec(x.querySelector('span').innerHTML)[1].trim()
+                })
+            }
+            return ndasmu
+        } catch (error) {
+            throw error
+        }
+    }
+
+    /**
+     * 
+     * @param {string|number} postId post id
+     * @param {string|number} parentCommentId parent comment id
+     * @returns 
+     */
+    async getCommentReplies(postId, parentCommentId) {
+        try {
+            const { data } = await axios.get('https://cdn16.1cak.com/1cak_comment.php?act=view_comments&post_id=' + postId + '&parent_comment_id=' + parentCommentId)
+            let dom = new JSDOM(data).window.document
+            //let comment = [...dom.getElementById('comment_1cak_' + id).querySelector('div > div').querySelectorAll('div[style="margin-bottom:10px;overflow:hidden"]')]
+            //style="margin:5px"
+            let comment = [...dom.querySelectorAll('div[style="margin-bottom:10px;overflow:hidden"]')]
+            let ndasmu = []
+            for (let x of comment) {
+                ndasmu.push({
+                    author: {
+                        user: x.querySelector('span > a > b').textContent
+                    },
+                    parent_comment_id: x.querySelector('span').getAttribute('id').match(/\d+/)[0],
+                    hasMedia: /img src/g.test(x.innerHTML),
+                    media: /img src/g.test(x.innerHTML) ? x.querySelector('img').getAttribute('src') : null,
+                    date: x.querySelector('abbr').getAttribute('title'),
+                    text: /<br>(.*?)[<|\n]/g.exec(x.querySelector('span').innerHTML)[1].trim()
+                })
+            }
+            return ndasmu
         } catch (error) {
             throw error
         }

@@ -1,7 +1,7 @@
 {
-  "name": "1cak",
+  "name": "1cak-scraper",
   "version": "0.0.1",
-  "description": "1cak scraper",
+  "description": "Un-Official 1cak.com Api Wrapper",
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,7 +12,10 @@
   },
   "keywords": [
     "1cak-api",
-    "wancak-scraper"
+    "wancak-scraper",
+    "1cak-scraper",
+    "1cak",
+    "1cak-api-wrapper"
   ],
   "author": "Gimenz",
   "license": "MIT",
@@ -22,7 +25,6 @@
   "homepage": "https://github.com/Gimenz/1cak#readme",
   "dependencies": {
     "axios": "^0.26.1",
-    "got": "^11.8.3",
     "jsdom": "^19.0.0"
   }
 }

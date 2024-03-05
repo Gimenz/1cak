@@ -5,13 +5,14 @@ simple unofficial api wrapper for [1cak.com](https://1cak.com "wancuk jancoookkk
 **NSFW Post & GIF Video is now supported :)**
 ## 👨‍🍳 Install
 
-`npm install github:Gimenz/1cak`
+`npm install 1cak-scraper`
 
 ## 📔 Example
 ```js
 const Wancak = require('1cak-scraper')
 
-// support nsfw content, if you provide cookie 
+// support nsfw content, if you provide cookie.
+// get cookie using dev tools (desktop browser), or eruda (mobile browser)
 const jancok = new Wancak('cookie');
 
 (async () => {

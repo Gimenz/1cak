@@ -1,6 +1,6 @@
 {
   "name": "1cak-scraper",
-  "version": "0.0.1",
+  "version": "0.0.21",
   "description": "Un-Official 1cak.com Api Wrapper",
   "main": "src/index.js",
   "scripts": {
